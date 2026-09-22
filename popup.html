@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>TDEE &amp; Macro Calculator</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<header>
+  <h1>TDEE &amp; Macro Calculator</h1>
+  <p class="sub">Mifflin-St Jeor &middot; Katch-McArdle &middot; Harris-Benedict</p>
+</header>
+
+<form id="form">
+  <div class="row">
+    <label for="sex">Sex</label>
+    <select id="sex">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <label for="age">Age</label>
+    <input type="number" id="age" min="1" max="120" placeholder="30" required>
+  </div>
+
+  <div class="row split">
+    <div>
+      <label for="weight">Weight</label>
+      <input type="number" id="weight" min="1" step="0.1" placeholder="80" required>
+    </div>
+    <select id="weightUnit" class="unit">
+      <option value="kg">kg</option>
+      <option value="lb">lb</option>
+    </select>
+  </div>
+
+  <div class="row split">
+    <div>
+      <label for="height">Height</label>
+      <input type="number" id="height" min="1" step="0.1" placeholder="180" required>
+    </div>
+    <select id="heightUnit" class="unit">
+      <option value="cm">cm</option>
+      <option value="in">in</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <label for="bodyFat">Body fat % <span class="opt">(optional &mdash; uses Katch-McArdle if filled)</span></label>
+    <input type="number" id="bodyFat" min="2" max="69" step="0.1" placeholder="e.g. 18">
+  </div>
+
+  <div class="row">
+    <label for="activity">Activity level</label>
+    <select id="activity">
+      <option value="sedentary">Sedentary (little/no exercise)</option>
+      <option value="light">Light (1-3 days/week)</option>
+      <option value="moderate" selected>Moderate (3-5 days/week)</option>
+      <option value="active">Active (6-7 days/week)</option>
+      <option value="very_active">Very active (2x/day or physical job)</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <label for="goal">Goal</label>
+    <select id="goal">
+      <option value="cut">Cut (-20% kcal)</option>
+      <option value="maintain" selected>Maintain</option>
+      <option value="bulk">Bulk (+10% kcal)</option>
+    </select>
+  </div>
+
+  <button type="submit" id="calcBtn">Calculate</button>
+</form>
+
+<div id="error" class="error" hidden></div>
+
+<section id="result" class="result" hidden>
+  <div class="stat-row">
+    <div class="stat"><span class="v" id="rBmr">--</span><span class="k">BMR</span></div>
+    <div class="stat"><span class="v" id="rTdee">--</span><span class="k">TDEE</span></div>
+    <div class="stat highlight"><span class="v" id="rTarget">--</span><span class="k">Target kcal</span></div>
+  </div>
+  <div class="macro-row">
+    <div class="macro"><span class="v" id="rProtein">--</span><span class="k">Protein g</span></div>
+    <div class="macro"><span class="v" id="rCarb">--</span><span class="k">Carbs g</span></div>
+    <div class="macro"><span class="v" id="rFat">--</span><span class="k">Fat g</span></div>
+  </div>
+</section>
+
+<footer>
+  Powered by the open-source <a href="https://www.npmjs.com/package/@aadifit/tdee-calc" target="_blank" rel="noopener">@aadifit/tdee-calc</a>
+  &middot; Full tracking at <a href="https://aadifit.com/tdee-calculator/" target="_blank" rel="noopener">aadifit.com</a>
+</footer>
+
+<script src="calc.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>
